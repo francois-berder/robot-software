@@ -402,15 +402,15 @@ void strategy_order_play_game(enum strat_color_t color, RobotState& state)
 
     wrist_set_horizontal(&main_wrist);
 
-    NOTICE("Getting arms ready...");
-    int len = planner.plan(state, init_goal, actions, action_count, path, max_path_len);
-    for (int i = 0; i < len; i++) {
-        path[i]->execute(state);
-        messagebus_topic_publish(state_topic, &state, sizeof(state));
-    }
+    // NOTICE("Getting arms ready...");
+    // int len = planner.plan(state, init_goal, actions, action_count, path, max_path_len);
+    // for (int i = 0; i < len; i++) {
+    //     path[i]->execute(state);
+    //     messagebus_topic_publish(state_topic, &state, sizeof(state));
+    // }
 
     /* Autoposition robot */
-    wait_for_autoposition_signal();
+    // wait_for_autoposition_signal();
     NOTICE("Positioning robot");
 
     robot.base_speed = BASE_SPEED_INIT;
@@ -482,15 +482,15 @@ void strategy_chaos_play_game(enum strat_color_t color, RobotState& state)
 
     wrist_set_horizontal(&main_wrist);
 
-    NOTICE("Getting arms ready...");
-    int len = planner.plan(state, init_goal, actions, action_count, path, max_path_len);
-    for (int i = 0; i < len; i++) {
-        path[i]->execute(state);
-        messagebus_topic_publish(state_topic, &state, sizeof(state));
-    }
+    // NOTICE("Getting arms ready...");
+    // int len = planner.plan(state, init_goal, actions, action_count, path, max_path_len);
+    // for (int i = 0; i < len; i++) {
+    //     path[i]->execute(state);
+    //     messagebus_topic_publish(state_topic, &state, sizeof(state));
+    // }
 
     /* Autoposition robot */
-    wait_for_autoposition_signal();
+    // wait_for_autoposition_signal();
     NOTICE("Positioning robot");
 
     robot.base_speed = BASE_SPEED_INIT;
