@@ -473,6 +473,18 @@ static void cmd_goto_avoid(BaseSequentialStream* chp, int argc, char* argv[])
     }
 }
 
+static void cmd_motion_plan(BaseSequentialStream* chp, int argc, char* argv[])
+{
+    if (argc == 2) {
+        int32_t x = atoi(argv[0]);
+        int32_t y = atoi(argv[1]);
+
+        motion_planner_set_goal(x, y);
+    } else {
+        chprintf(chp, "Usage: plan x y\r\n");
+    }
+}
+
 static void cmd_pid(BaseSequentialStream* chp, int argc, char* argv[])
 {
     if (argc == 2) {
@@ -1396,4 +1408,5 @@ const ShellCommand commands[] = {
     {"panel", cmd_panel_status},
     {"beacon", cmd_proximity_beacon},
     {"shake", cmd_shake_the_arm},
+    {"plan", cmd_motion_plan},
     {NULL, NULL}};

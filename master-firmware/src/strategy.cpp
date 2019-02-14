@@ -565,6 +565,7 @@ void strategy_play_game(void* p)
     NOTICE("Waiting for color selection...");
     enum strat_color_t color = wait_for_color_selection();
     map_server_start(color);
+    motion_planner_start();
     score_counter_start();
     color_sequence_server_start();
 
