@@ -3,6 +3,7 @@
 #include <chprintf.h>
 
 #include <parameter/parameter.h>
+#include <parameter_flash_storage/parameter_flash_storage.h>
 #include <timestamp/timestamp_stm32.h>
 
 #include "blocking_uart_driver.h"
@@ -16,6 +17,7 @@
 #include "index.h"
 #include "uart_stream.h"
 #include "parameter_listener.h"
+#include "main.h"
 
 BaseSequentialStream* ch_stdout;
 parameter_namespace_t parameter_root_ns;
@@ -136,8 +138,10 @@ int main(void)
     /* Wait for all services to boot, then try to load config. */
     chThdSleepMilliseconds(300);
 
-    uavcan_init_complete();
-    control_start();
+    if (parameter_flash_storage_load(&parameter_root_ns, &_config_start)) {
+        uavcan_init_complete();
+        control_start();
+    }
 
     while (1) {
         chThdSleepMilliseconds(1000);
