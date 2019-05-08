@@ -172,6 +172,26 @@ actuator:
             acceleration_limit: 200.
             velocity_limit: 50.
             torque_limit: 30.
+    proximity-beacon:
+        control:
+            current:
+                i_limit: 100.0
+                kd: 0.0
+                ki: 1000.0
+                kp: 10.0
+            low_batt_th: 5.
+            mode: 2
+            velocity:
+                kd: 0.0
+                ki: 0.05
+                kp: 0.01
+        encoders:
+            primary:
+                p: 10
+                q: 34
+                ticks_per_rev: 64
+        motor:
+            torque_cst: 1.0
     right-theta-1:
     # motor: 2232 U009 SR
         streams:
